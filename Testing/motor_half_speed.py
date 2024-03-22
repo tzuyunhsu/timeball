@@ -8,7 +8,7 @@ pwmPin_2 = 5
 GPIO.setwarnings(False)
 
 # Duty cycle and frequency
-duty = 50
+duty = 70 # change from 50 to 70 due to the current low moving speed
 frequency = 50
 
 def setup():
@@ -24,19 +24,19 @@ def setup():
     global pwm_2
     pwm_1 = GPIO.PWM(pwmPin_1, frequency)
     pwm_2 = GPIO.PWM(pwmPin_2, frequency)
-def backwards():
-    # Going forwards (going up)
+def backward():
+    # Going backward (going down)
 
     pwm_1.start(duty)
     pwm_2.start(0)
 def forward():
-    # Going backwards (going down)
+    # Going forward (going up)
     pwm_2.start(duty)
     pwm_1.start(0)
 def sequence():
     while True:
         #forward()
-        backwards()
+        backward()
 
 def destroy():
     # Clean up the GPIO pins

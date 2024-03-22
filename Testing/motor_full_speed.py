@@ -16,21 +16,21 @@ def setup():
     GPIO.setup(AIN2Pin, GPIO.OUT)
 
 
-def forwards():
-    # Going forwards (going up)
+def backward():
+    # Going forward (going up)
 
     GPIO.output(AIN1Pin, GPIO.HIGH)
     GPIO.output(AIN2Pin, GPIO.LOW)
 
-def backwards():
-    # Going backwards (going down)
+def forward():
+    # Going backward (going down)
     GPIO.output(AIN1Pin, GPIO.LOW)
     GPIO.output(AIN2Pin, GPIO.HIGH)
 
 
 def sequence():
     while True:
-        backwards()
+        forward()
 
 def destroy():
     # Clean up the GPIO pins
