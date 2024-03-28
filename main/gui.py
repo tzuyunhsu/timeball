@@ -70,11 +70,11 @@ def update_time():
         time_left = "The cycle is complete!"
 
         # Enable multiple cycles (Up to 15 min)
-        if (now - time_limit_start).total_seconds() < 900:
-            system_start_time = now
-            raised_to_middle = False
-            raised_to_top = False
-            dropped = False
+        # if (now - time_limit_start).total_seconds() < 900:
+        #     system_start_time = now
+        #     raised_to_middle = False
+        #     raised_to_top = False
+        #     dropped = False
 
     # Clear the screen
     screen.fill((255, 255, 255))

@@ -24,42 +24,42 @@ def update_time():
     # Calculate the time left to the next motion (15 min version)
     diff = (now - system_start_time).total_seconds()
     # Waiting to move to the middle (10 minute)
-    if diff < 60:
+    if diff < 600:
         #diff = datetime.datetime.combine(now, system_start_time) - now
         #hours, remainder = divmod(diff.total_seconds(), 3600)
-        minutes, seconds = divmod((60 - diff), 60)
+        minutes, seconds = divmod((600 - diff), 60)
         time_left = f"{int(minutes):02d}:{int(seconds):02d} to move to the middle!"
 
     # Forward to the middle
-    if diff >= 60 and not raised_to_middle:
+    if diff >= 600 and not raised_to_middle:
         #time_left = "Moving to the middle!"
         now = forward_to_middle(now, screen ,font)
         time_string = now.strftime("%I:%M:%S %p")
         raised_to_middle = True
 
     # Waiting to move to the top (13 minutes)
-    if raised_to_middle and diff < 120 :
+    if raised_to_middle and diff < 780 :
         #diff = datetime.datetime.combine(now, system_start_time) - now
         #hours, remainder = divmod(diff.total_seconds(), 3600)
-        minutes, seconds = divmod((120 - diff), 60)
+        minutes, seconds = divmod((780 - diff), 60)
         time_left = f"{int(minutes):02d}:{int(seconds):02d} to move to the top!"
     
     # Forward to the top
-    if diff >= 120 and not raised_to_top:
+    if diff >= 780 and not raised_to_top:
         time_left = "Moving to the top!"
         now = forward_to_top(now, screen, font)
         time_string = now.strftime("%I:%M:%S %p")
         raised_to_top = True
     
     # Waiting to drop the ball to the bottom (15 minutes)
-    if raised_to_middle and raised_to_top and diff < 180:
+    if raised_to_middle and raised_to_top and diff < 900:
         #diff = datetime.datetime.combine(now, system_start_time) - now
         #hours, remainder = divmod(diff.total_seconds(), 3600)
-        minutes, seconds = divmod((180 - diff), 60)
+        minutes, seconds = divmod((900 - diff), 60)
         time_left = f"{int(minutes):02d}:{int(seconds):02d} to drop to the bottom!"
 
     # Drop to the bottom
-    if diff >= 180 and not dropped:
+    if diff >= 900 and not dropped:
         time_left = "Dropping to the bottom!"
         now = backwards(now, screen, font)
         time_string = now.strftime("%I:%M:%S %p")
@@ -70,11 +70,11 @@ def update_time():
         time_left = "The cycle is complete!"
 
         # Enable multiple cycles (Up to 15 min)
-        if (now - time_limit_start).total_seconds() < 900:
-            system_start_time = now
-            raised_to_middle = False
-            raised_to_top = False
-            dropped = False
+        # if (now - time_limit_start).total_seconds() < 900:
+        #     system_start_time = now
+        #     raised_to_middle = False
+        #     raised_to_top = False
+        #     dropped = False
 
     # Clear the screen
     screen.fill((255, 255, 255))
